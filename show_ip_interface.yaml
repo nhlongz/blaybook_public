@@ -6,7 +6,7 @@
     - name: run show ip interfaces on the routers
       ios_command:
         #commands: show version | incl Version
-        commands: show interface brief
+        commands: show interfaces brief
       register: output
 
     - name: print output
