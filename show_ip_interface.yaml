@@ -1,0 +1,14 @@
+- name: Cisco show ip interfaces router example
+  hosts: routers
+  gather_facts: false
+
+  tasks:
+    - name: run show ip interfaces on the routers
+      ios_command:
+        #commands: show version | incl Version
+        commands: show interface brief
+      register: output
+
+    - name: print output
+      debug:
+        var: output.stdout_lines
