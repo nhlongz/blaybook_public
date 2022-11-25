@@ -5,7 +5,7 @@
   tasks:
     - name: run ping vyos
       ios_command:
-        commands: 
+        config: 
         - ping 8.8.8.8
       register: output
 
