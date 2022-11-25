@@ -3,7 +3,7 @@
   gather_facts: false
 
   tasks:
-    - name: run show version on the routers
+    - name: run ping vyos
       ios_command:
         commands: 
         - ping 8.8.8.8
