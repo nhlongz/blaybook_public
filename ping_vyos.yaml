@@ -4,6 +4,7 @@
 
   tasks:
     - name: run ping vyos 
+    commands:
         - ping 8.8.8.8
       register: output
 
