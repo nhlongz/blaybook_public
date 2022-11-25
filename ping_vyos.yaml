@@ -1,11 +1,12 @@
 - name: Cisco show version example
-  hosts: all
+  hosts: vyos
   gather_facts: false
 
   tasks:
     - name: run show version on the routers
       ios_command:
-        commands: show version | incl Version
+        commands: 
+        - ping 8.8.8.8
       register: output
 
     - name: print output
