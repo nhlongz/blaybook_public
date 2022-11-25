@@ -3,9 +3,7 @@
   gather_facts: false
 
   tasks:
-    - name: run ping vyos
-      ios_command:
-        config: 
+    - name: run ping vyos 
         - ping 8.8.8.8
       register: output
 
