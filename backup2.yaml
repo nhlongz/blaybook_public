@@ -1,10 +1,14 @@
 
-- name: Backup config
+- name: mkdir 
+
+  hosts: localhost
+  tasks:
+    - name: ensure backup folder is created
+      file:
+        path: "{{ backup_root }}"
+        state: directory
+      run_once: yes
+
+
+- name: Backup config      
   hosts: routers
-  vars:
-    backup_config:
-      filename: "config_{{ ansible_host }}"
-      path: "~/network_configs_1/"
-      backup: yes
-  roles:
-    - { role: f5devcentral.backup_config }

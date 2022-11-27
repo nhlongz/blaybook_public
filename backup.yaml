@@ -8,9 +8,9 @@
 
     cli:
       host: "{{ inventory_hostname }}"
-#      username: cisco
-#      password: cisco@123
-#      authorize: true
+      username: cisco
+      password: cisco@123
+      authorize: true
 
   tasks:
     - name: run show running-config on remote devices
