@@ -1,9 +1,11 @@
 - name: Cisco lab site-01
-  hostname: R-active
+  hosts: routers
   gather_facts: false
 
   tasks:
     - name: run show version on the routers
+      hostname:
+        name="{{ R-active }}"
       ios_command:
         commands: show version | incl Version
       register: output
