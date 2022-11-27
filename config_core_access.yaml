@@ -26,7 +26,7 @@
       debug:
         var: output.stdout_lines
 
-    - name: config interface trunk
+    - name: config VTP server on CORE-1
       debug:
         msg:
           ios_config:
@@ -38,6 +38,18 @@
       delegate_to: play_hosts[0]
       register: output 
 
+- name: config vtp client
+  hosts: CORE-sw[1,] , ACCESS-sw
+  gather_facts: false
+  tasks:
+    - name: config interface trunk
+      ios_config:
+        lines:
+          - vtp domain site-01.vn
+          - vtp mode client
+        parents: int range e0/1-3
+      register: output     
+      
 
 - name: config access-sw site-01 
   hosts: ACCESS-sw
