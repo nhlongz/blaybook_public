@@ -1,5 +1,5 @@
 - name: Cisco lab site-01
-  hosts: R-active
+  hostname: R-active
   gather_facts: false
 
   tasks:
