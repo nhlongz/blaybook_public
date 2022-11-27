@@ -13,6 +13,7 @@
           - description test interface
           - ip address 172.31.1.1 255.255.255.0
         parents: interface Ethernet1/0
+      register: output
 
     - name: print output
       debug:
@@ -26,7 +27,7 @@
     - name: run show version on the routers
       ios_command:
         commands: show version | incl Version
-        
+      register: output  
     - name: print output
       debug:
         var: output.stdout_lines
