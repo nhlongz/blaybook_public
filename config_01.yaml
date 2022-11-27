@@ -10,10 +10,23 @@
     - name: configure interface settings
       ios_config:
         lines:
-#          - description test interface
+          - description test interface
           - no ip address 172.31.1.1 255.255.255.0
         parents: interface Ethernet1/0
 
+    - name: print output
+      debug:
+        var: output.stdout_lines
+  
+- name: Cisco lab sw site-01
+  hosts: CORE-sw
+  gather_facts: false
+
+  tasks:
+    - name: run show version on the routers
+      ios_command:
+        commands: show version | incl Version
+        
     - name: print output
       debug:
         var: output.stdout_lines
