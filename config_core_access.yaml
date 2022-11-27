@@ -1,21 +1,45 @@
-- name: Cisco lab site-01
+- name: config core-sw site-01 
   hosts: CORE-sw
   gather_facts: false
-
   tasks:
-    - name: configure interface settings
+    - name: config interface trunk
       ios_config:
         lines:
-          - description config interface trunk
           - sw trunk encap dot1q
           - sw mode trunk
         parents: int range e0/1-3
       register: output
+    - name: config etherchannel
+      ios_command:
+        lines:
+          - channel-group 1 mode on
+        parents: int range e1/0-1
+      register: output
 
+    - name: show
+      ios_command:
+        commands: 
+          - show etherchannel sumary
+          - show spanning-tree vlan 1
+      register: output
     - name: print output
       debug:
         var: output.stdout_lines
 
+
+
+- name: config access-sw site-01 
+  hosts: ACCESS-sw
+  gather_facts: false
+
+  tasks:
+    - name: config interface trunk
+      ios_config:
+        lines:
+          - sw trunk encap dot1q
+          - sw mode trunk
+        parents: int range e0/1-2
+      register: output
 
 
 
