@@ -1,7 +1,7 @@
 
 ---
 - name: Backup Cisco Router or Switch
-  hosts: Cisco
+  hosts: all
   connection: network_cli
   gather_facts: false
   tasks:
