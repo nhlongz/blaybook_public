@@ -1,14 +1,8 @@
+---
+- name: Cisco Backup Config
+  hosts: all
+  connection: network_cli
+  gather_facts: no
 
-- name: mkdir 
-
-  hosts: localhost
-  tasks:
-    - name: ensure backup folder is created
-      file:
-        path: "{{ backup_root }}"
-        state: directory
-      run_once: yes
-
-
-- name: Backup config      
-  hosts: routers
+  roles:
+    - cisco_backup_config
