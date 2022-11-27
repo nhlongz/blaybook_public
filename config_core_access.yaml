@@ -1,4 +1,4 @@
-- name: config core-sw site-01 
+- name: config core-sw trunk
   hosts: CORE-sw
   gather_facts: false
   tasks:
@@ -50,7 +50,7 @@
       register: output     
 
 
-- name: config access-sw site-01 
+- name: config access-sw trunk
   hosts: ACCESS-sw
   gather_facts: false
 
