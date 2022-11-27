@@ -10,7 +10,7 @@
         parents: int range e0/1-3
       register: output
     - name: config etherchannel
-      ios_command:
+      ios_config:
         lines:
           - channel-group 1 mode on
         parents: int range e1/0-1
@@ -19,7 +19,7 @@
     - name: show
       ios_command:
         commands: 
-          - show etherchannel sumary
+          - show etherchannel summary
           - show spanning-tree vlan 1
       register: output
     - name: print output
