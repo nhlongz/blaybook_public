@@ -1,5 +1,5 @@
 - name: Cisco lab site-01
-  hosts: routers
+  hosts: R-active
   gather_facts: false
 
   tasks:
