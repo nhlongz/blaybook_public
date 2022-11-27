@@ -34,6 +34,7 @@
               - vtp domain site-01.vn
               - vtp mode server
               - vlan 10,20,30,40,50
+              - exit
 
       run_once: true
       delegate_to: play_hosts[0]
