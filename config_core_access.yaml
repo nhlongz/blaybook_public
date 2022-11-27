@@ -26,39 +26,27 @@
       debug:
         var: output.stdout_lines
 
-    - name: config VTP server on CORE-1
-      debug:
-        msg:
-          ios_config:
-            lines:
-              - vtp domain site-01.vn
-              - vtp mode server
-          ios_vlans:
-            config:
-              - name: Guest
-                vlan_id: 10
-              - name: desktops
-                vlan_id: 20
-              - name: servers
-                vlan_id: 30
-              - name: printers
-                vlan_id: 40
-              - name: VIP
-                vlan_id: 50
-      run_once: true
-      delegate_to: play_hosts[0]
+- name: config vtp server
+  hosts: CORE-1
+  gather_facts: false
+  tasks:
+    - name: config vtp server
+      ios_config:
+        lines:
+          - vtp domain site-01.vn
+          - vtp mode server
+          - vlan 10,20,30,40,50
       register: output 
 
 - name: config vtp client
   hosts: CORE-sw[1,] , ACCESS-sw
   gather_facts: false
   tasks:
-    - name: config interface trunk
+    - name: config vtp client
       ios_config:
         lines:
           - vtp domain site-01.vn
           - vtp mode client
-        parents: int range e0/1-3
       register: output     
 
 
