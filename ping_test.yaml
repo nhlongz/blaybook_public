@@ -1,0 +1,14 @@
+- name: Cisco ping
+  hosts: all
+  gather_facts: false
+
+  tasks:
+    - name: ping on devices netvork
+      ios_command:
+        commands: 
+        - ping 8.8.8.8
+      register: output
+
+    - name: print output
+      debug:
+        var: output.stdout_lines
