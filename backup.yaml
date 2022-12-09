@@ -49,7 +49,7 @@
       git_acp:
         user: nhlongz
         token: github_vault
-        path: "{{ root_path }}"
+        path: "{{ root_path }}/github"
         branch: master
         comment: "update backup on {{ timestamp }}"
         remote: origin
