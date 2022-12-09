@@ -51,7 +51,7 @@
         token: github_vault
         path: "{{ root_path }}/github"
         branch: master
-        comment: "update backup on {{ timestamp }}"
+        comment: "update backup on {{ timestamp.stdout }}"
         remote: origin
         add: [ "." ]
         mode: https
