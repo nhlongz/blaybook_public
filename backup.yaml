@@ -53,4 +53,4 @@
         add: [ "." ]
         mode: https
         url: "https://github.com/nhlongz/backups_config.git"
-      delegate_to: localhost
+#      delegate_to: localhost
