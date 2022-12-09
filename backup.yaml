@@ -63,7 +63,7 @@
       git_acp:
         user: nhlongz
         token: github_vault
-        path: "{{ root_path }}/github/config_change_info"
+        path: "{{ root_path }}/github/config_change_info/backups_config"
         branch: config_change_info
         comment: "update backup on {{ timestamp.stdout }}"
         remote: origin
