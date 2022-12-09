@@ -42,7 +42,7 @@
         dest: "{{ backup_root }}/{{ site_name }}/{{ inventory_hostname }}/backup-config_{{ inventory_hostname }}-firt"   #{{ timestamp.stdout }}
       delegate_to: localhost
 
-    - name: LOCAL | push on local repo.
+    - name: LOCAL  push on local repo.
       git_acp:
         path: "{{ backup_root }}"
         branch: master
