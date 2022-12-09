@@ -50,7 +50,7 @@
         user: nhlongz
         token: github_vault
         path: "{{ root_path }}/github"
-        branch: master
+        branch: main
         comment: "update backup on {{ timestamp.stdout }}"
         remote: origin
         add: [ "." ]
