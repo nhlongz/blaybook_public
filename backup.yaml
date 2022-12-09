@@ -21,7 +21,7 @@
 
     - name: ensure backup folder is created
       file:
-        path: "{{ backup_root }}"
+        path: "{{ backup_root }}/{{ site_name }}"
         state: directory
       run_once: yes
       delegate_to: localhost
