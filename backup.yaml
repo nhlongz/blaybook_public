@@ -48,7 +48,7 @@
     - name: HTTPS | update backups to github.
       git_acp:
         user: nhlongz
-#        token: github_vault
+        token: github_vault
         path: "{{ root_path }}"
         branch: master
         comment: "update backup on {{ timestamp }}"
