@@ -41,3 +41,15 @@
         content: "{{ config.stdout[0] }}"
         dest: "{{ backup_root }}/{{ site_name }}/{{ inventory_hostname }}/running-config_{{ timestamp.stdout }}"
       delegate_to: localhost
+
+    - name: HTTPS | add file1.
+      git_acp:
+        user: Federico87
+        token: mytoken
+        path: /Users/git/git_acp
+        branch: master
+        comment: Add file1.
+        remote: origin
+        add: [ "." ]
+        mode: https
+        url: "https://gitlab.com/networkAutomation/git_test_module.git"
