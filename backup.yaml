@@ -39,17 +39,26 @@
     - name: get/copy backup
       copy:
         content: "{{ config.stdout[0] }}"
-        dest: "{{ backup_root }}/{{ site_name }}/{{ inventory_hostname }}/running-config_{{ timestamp.stdout }}"
+        dest: "{{ backup_root }}/{{ site_name }}/{{ inventory_hostname }}/backup-config_{{ inventory_hostname }}-firt"   #{{ timestamp.stdout }}
       delegate_to: localhost
 
-    - name: HTTPS | add file1.
+    - name: LOCAL | push on local repo.
       git_acp:
-        user: Federico87
-        token: mytoken
-        path: /Users/git/git_acp
+        path: "~/backup"
         branch: master
-        comment: Add file1.
+        comment: Add /backup to github.
+        add: [ "{{ backup_root }}" ]
+        mode: local
+        url: "https://github.com/nhlongz/backups_config.git"
+        
+    - name: HTTPS | update backups to github.
+      git_acp:
+        user: nhlongz
+        token: github_vault
+        path: "{{ backup_root }}"
+        branch: master
+        comment: "update backup on {{ timestamp }}"
         remote: origin
         add: [ "." ]
         mode: https
-        url: "https://gitlab.com/networkAutomation/git_test_module.git"
+        url: "https://github.com/nhlongz/backups_config.git"
