@@ -4,7 +4,7 @@
   connection: network_cli
 
   vars:
-    backup_root: /var/lib/ol-automation-manager/backups
+    backup_root: /var/lib/ol-automation-manager/backups_config
 
     cli:
       host: "{{ inventory_hostname }}"
