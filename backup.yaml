@@ -4,7 +4,8 @@
   connection: network_cli
 
   vars:
-    backup_root: /var/lib/ol-automation-manager/backups_config
+    root_path: /var/lib/ol-automation-manager
+    backup_root: "{{ root_path }}/backups_config"
 
     cli:
       host: "{{ inventory_hostname }}"
@@ -41,6 +42,15 @@
         content: "{{ config.stdout[0] }}"
         dest: "{{ backup_root }}/{{ site_name }}/{{ inventory_hostname }}/backup-config_{{ inventory_hostname }}"   #{{ timestamp.stdout }}
       delegate_to: localhost
+
+    - name: LOCAL | push on local repo.
+      git_acp:
+        path: "{{backup_root}}"
+        branch: master
+        comment: Add ./backups_config.
+        add: [ ./backups_config ]
+        mode: local
+        url: "{{ backup_root }}.git"
 
     - name: HTTPS | update backups to github.
       git_acp:
