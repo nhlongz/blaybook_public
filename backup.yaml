@@ -43,21 +43,14 @@
         dest: "{{ backup_root }}/{{ site_name }}/{{ inventory_hostname }}/backup-config_{{ inventory_hostname }}"   #{{ timestamp.stdout }}
       delegate_to: localhost
 
-    - name: LOCAL | push on local repo.
-      git_acp:
-        path: "{{ root_path }}"
-        branch: master
-        comment: Add ./backups_config.
-        add: [ ./backups_config ]
-        mode: local
-        url: "{{ backup_root }}.git"
+
 
     - name: HTTPS | update backups to github.
       git_acp:
         user: nhlongz
 #        token: github_vault
         path: "{{ root_path }}"
-        branch: main
+        branch: master
         comment: "update backup on {{ timestamp }}"
         remote: origin
         add: [ "." ]
