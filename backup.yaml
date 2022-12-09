@@ -49,11 +49,11 @@
       git_acp:
         user: nhlongz
         token: github_vault
-        path: "{{ root_path }}/github"
+        path: "{{ root_path }}/github/backups_config"
         branch: main
         comment: "update backup on {{ timestamp.stdout }}"
         remote: origin
-        add: [ "./backups_config" ]
+        add: [ "." ]
         mode: https
         url: "https://github.com/nhlongz/backups_config.git"
       run_once: true
