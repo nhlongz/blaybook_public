@@ -53,7 +53,7 @@
         branch: main
         comment: "update backup on {{ timestamp.stdout }}"
         remote: origin
-        add: [ "." ]
+        add: [ "./backups_config" ]
         mode: https
         url: "https://github.com/nhlongz/backups_config.git"
       run_once: true
