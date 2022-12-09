@@ -45,7 +45,7 @@
 
     - name: LOCAL | push on local repo.
       git_acp:
-        path: "{{backup_root}}"
+        path: "{{ root_path }}"
         branch: master
         comment: Add ./backups_config.
         add: [ ./backups_config ]
@@ -55,8 +55,8 @@
     - name: HTTPS | update backups to github.
       git_acp:
         user: nhlongz
-        token: github_vault
-        path: "{{ backup_root }}"
+#        token: github_vault
+        path: "{{ root_path }}"
         branch: main
         comment: "update backup on {{ timestamp }}"
         remote: origin
