@@ -47,7 +47,7 @@
         user: nhlongz
         token: github_vault
         path: "{{ backup_root }}"
-        branch: master
+        branch: main
         comment: "update backup on {{ timestamp }}"
         remote: origin
         add: [ "." ]
