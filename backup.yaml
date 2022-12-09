@@ -28,7 +28,7 @@
 
     - name: ensure device rolder is created
       file:
-        path: "{{ backup_root }}/{{ inventory_hostname }}"
+        path: "{{ backup_root }}//{{ site_name }}/{{ inventory_hostname }}"
         state: directory
       delegate_to: localhost
 
@@ -39,5 +39,5 @@
     - name: get/copy backup
       copy:
         content: "{{ config.stdout[0] }}"
-        dest: "{{ backup_root }}/{{ inventory_hostname }}/running-config_{{ timestamp.stdout }}"
+        dest: "{{ backup_root }}/{{ site_name }}/{{ inventory_hostname }}/running-config_{{ timestamp.stdout }}"
       delegate_to: localhost
