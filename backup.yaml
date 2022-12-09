@@ -44,7 +44,7 @@
 
     - name: LOCAL | push on local repo.
       git_acp:
-        path: "~/backup"
+        path: "{{ backup_root }}"
         branch: master
         comment: Add /backup to github.
         add: [ "{{ backup_root }}" ]
