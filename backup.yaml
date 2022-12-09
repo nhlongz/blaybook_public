@@ -18,23 +18,26 @@
         commands: "show running-config"
         provider: "{{ cli }}"
       register: config
-
+      delegate_to: localhost
     - name: ensure backup folder is created
       file:
         path: "{{ backup_root }}"
         state: directory
       run_once: yes
+      delegate_to: localhost
 
     - name: ensure device rolder is created
       file:
         path: "{{ backup_root }}/{{ inventory_hostname }}"
         state: directory
+      delegate_to: localhost
 
     - name: get timestamp
       command: date +%Y%m%d
       register: timestamp
-
+      delegate_to: localhost
     - name: get/copy backup
       copy:
         content: "{{ config.stdout[0] }}"
         dest: "{{ backup_root }}/{{ inventory_hostname }}/running-config_{{ timestamp.stdout }}"
+      delegate_to: localhost
