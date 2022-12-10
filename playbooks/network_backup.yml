@@ -18,13 +18,13 @@
       delegate_facts: true
       run_once: true
 
-    - name: Create a directory if it does not exist
-      ansible.builtin.file:
-        path: /backup/
+
+    - name: ensure backup folder is created
+      file:
+        path: "/backup"
         state: directory
-      delegate_to: localhost
-      become: true
       run_once: true
+      delegate_to: localhost
 
     - name: save configuration to backup server
       copy:
