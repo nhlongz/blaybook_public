@@ -1,6 +1,6 @@
 ---
 - name: retrieve network configurations
-  hosts: network
+  hosts: site03
   gather_facts: false
 
   tasks:
