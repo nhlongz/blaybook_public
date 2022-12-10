@@ -46,7 +46,7 @@
       delegate_facts: true
 
     - name: Create tower restore job template 
-      job_template:
+      awx.awx.job_template:
         name: "Network Automation - Restore"
         organization: "Default"
         job_type: "run"
