@@ -1,7 +1,7 @@
 ---
 - name: restore router configurations
   hosts: network
-  gather_facts: no
+  gather_facts: false
 
   tasks:
     - name: retreive configuration from backup-server to execution environment
