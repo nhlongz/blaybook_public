@@ -58,3 +58,5 @@
 #        survey_spec: "{{ lookup('template', '{{ playbook_dir }}/../network_setup/templates/backup.j2') }}"
         validate_certs: no
       run_once: true
+      delegate_to: localhost
+
