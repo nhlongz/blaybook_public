@@ -4,7 +4,7 @@
   connection: network_cli
 
   vars:
-    root_path: /var/lib/ol-automation-manager
+    root_path: /var/lib/ol-automation-manager/github
     backup_root: "{{ root_path }}/backups_config"
 
     cli:
@@ -37,19 +37,27 @@
       command: date +%Y%m%d
       register: timestamp
       delegate_to: localhost
-    - name: get/copy backup
+
+# copy file backup to ./backups_config
+    - name: get/copy backup to /backups_config
       copy:
         content: "{{ config.stdout[0] }}"
         dest: "{{ backup_root }}/{{ site_name }}/{{ inventory_hostname }}/backup-config_{{ inventory_hostname }}-{{ timestamp.stdout }}"   #{{ timestamp.stdout }}
       delegate_to: localhost
 
+# copy file backup to ./config_change_info/backups_config
+    - name: get/copy backup to /backups_config
+      copy:
+        content: "{{ config.stdout[0] }}"
+        dest: "{{ backup_root }}/{{ site_name }}/{{ inventory_hostname }}/backup-config_{{ inventory_hostname }}"   #{{ timestamp.stdout }}
+      delegate_to: localhost
 # config_change_info
 
     - name: HTTPS | update backups_config to github.
       git_acp:
-        user: nhlongz
+        user: nhlongzx
         token: github_vault
-        path: "{{ root_path }}/github/backups_config"
+        path: "{{ root_path }}/backups_config"
         branch: main
         comment: "update backup on {{ timestamp.stdout }}"
         remote: origin
@@ -61,9 +69,9 @@
       
     - name: HTTPS | update config_change_info to github.
       git_acp:
-        user: nhlongz
+        user: nhlongzx
         token: github_vault
-        path: "{{ root_path }}/github/config_change_info/backups_config"
+        path: "{{ root_path }}/config_change_info/backups_config"
         branch: config_change_info
         comment: "update backup on {{ timestamp.stdout }}"
         remote: origin
