@@ -30,7 +30,7 @@
     - name: save configuration to backup server
       copy:
         src: "{{ config_output.backup_path }}"
-        dest: "{{ root_path }}/backup/{{hostvars['backup-server'].datetime}}/"
+        dest: "{{ root_path }}/backup/{{hostvars['localhost'].datetime}}/"
       when: config_output is defined
       become: true
       delegate_to: localhost
