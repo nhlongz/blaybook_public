@@ -43,7 +43,7 @@
       run_once: true
 #      become: true
       delegate_to: localhost
-      delegate_facts: true
+#      delegate_facts: true
 
     - name: create restore job template
       awx.awx.job_template:
