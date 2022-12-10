@@ -17,7 +17,7 @@
     - name: run show running-config on remote devices
       ios_command:
         commands: "show running-config"
-        provider: "{{ cli }}"
+#        provider: "{{ cli }}"
       register: config
 
     - name: ensure backup folder is created
@@ -33,50 +33,49 @@
         state: directory
       delegate_to: localhost
 
-    - name: get timestamp
-      command: date +%Y%m%d
-      register: timestamp
+    - name: get timestamp for play
+      set_fact:
+        timestamp: "{{ lookup('pipe','date +%Y-%m-%d-%H-%M') }}"
       delegate_to: localhost
+      delegate_facts: true
+      run_once: true
 
 # copy file backup to ./backups_config
-    - name: get/copy backup to /backups_config
+    - name: backup to /backups_config
       copy:
         content: "{{ config.stdout[0] }}"
-        dest: "{{ backup_root }}/{{ site_name }}/{{ inventory_hostname }}/backup-config_{{ inventory_hostname }}-{{ timestamp.stdout }}"   #{{ timestamp.stdout }}
+        dest: "{{ backup_root }}/{{ site_name }}/{{ inventory_hostname }}/{{ timestamp }}"   #{{ timestamp.stdout }}
       delegate_to: localhost
 
 # copy file backup to ./config_change_info/backups_config
-    - name: get/copy backup to /backups_config
+    - name: backup to /config_change_info/backups_config
       copy:
         content: "{{ config.stdout[0] }}"
         dest: "{{ backup_root }}/{{ site_name }}/{{ inventory_hostname }}/backup-config_{{ inventory_hostname }}"   #{{ timestamp.stdout }}
       delegate_to: localhost
-# config_change_info
 
-    - name: HTTPS | update backups_config to github.
-      git_acp:
-        user: nhlongzx
-        token: github_vault
-        path: "{{ root_path }}/backups_config"
-        branch: main
-        comment: "update backup on {{ timestamp.stdout }}"
-        remote: origin
-        add: [ "." ]
-        mode: https
-        url: "https://github.com/nhlongz/backups_config.git"
+
+    - name: find backups
+      find:
+        paths: /backup
+        file_type: directory
+      register: backups
       run_once: true
+      become: true
       delegate_to: localhost
-      
-    - name: HTTPS | update config_change_info to github.
-      git_acp:
-        user: nhlongzx
-        token: github_vault
-        path: "{{ root_path }}/config_change_info/backups_config"
-        branch: config_change_info
-        comment: "update backup on {{ timestamp.stdout }}"
-        remote: origin
-        add: [ "." ]
-        mode: https
-        url: "https://github.com/nhlongz/backups_config.git"
+      delegate_facts: true
+
+    - name: create restore job template
+      ansible.controller.job_template:
+        name: "Network Automation - Restore"
+        job_type: "run"
+        inventory: "{{ restore_inventory|default('test') }}"
+        project: "{{ restore_project|default('git_pb_public') }}"
+        playbook: "{{ restores_playbook|default('zpb/restore.yml') }}"
+        credential: "{{ restore_credential|default('cisco_pw') }}"
+        survey_enabled: true
+        survey_spec: "{{ lookup('template', '{{ playbook_dir }}/network_setup/templates/backup.j2') }}"
+        validate_certs: no
+        execution_environment: "Default"
       run_once: true
-      delegate_to: localhost
+
