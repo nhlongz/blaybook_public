@@ -45,7 +45,7 @@
       delegate_to: localhost
       delegate_facts: true
 
-    - name: Create tower restore job template 
+    - name: Create restore job template 
       awx.awx.job_template:
         name: "Network Automation - Restore"
         organization: "Default"
