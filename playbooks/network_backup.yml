@@ -56,10 +56,9 @@
         credentials: 
           - "cisco_pw"
         state: "present"
-#        controller_config_file: "~/tower_cli.cfg"
+        controller_config_file: "~/tower_cli.cfg"
 #        survey_enabled: yes
 #        survey_spec: "{{ lookup('file', 'my_survey.json') }}"
-      state: "present"
       run_once: true
       delegate_to: localhost
   
