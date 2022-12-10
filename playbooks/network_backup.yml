@@ -60,5 +60,5 @@
 #        survey_enabled: yes
 #        survey_spec: "{{ lookup('file', 'my_survey.json') }}"
       run_once: true
-      delegate_to: localhost
+#      delegate_to: localhost
   
