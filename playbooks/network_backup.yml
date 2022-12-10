@@ -58,7 +58,7 @@
         state: "present"
         controller_config_file: "~/tower_cli.cfg"
         survey_enabled: yes
-        survey_spec: "{{ lookup('file', 'my_survey.json') }}"
+        survey_spec: "{{ lookup('template', '{{ playbook_dir }}/../network_setup/templates/backup.j2') }}"
       run_once: true
       delegate_to: localhost
   
