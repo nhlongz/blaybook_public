@@ -6,7 +6,7 @@
   vars:
     root_path: /var/lib/ol-automation-manager/github
     backup_root: "{{ root_path }}/backups_config"
-
+    timestamp: ""
     cli:
       host: "{{ inventory_hostname }}"
 #      username: 
@@ -37,8 +37,6 @@
       set_fact:
         timestamp: "{{ lookup('pipe','date +%Y-%m-%d-%H-%M') }}"
       delegate_to: localhost
-      delegate_facts: true
-      run_once: true
 
 # copy file backup to ./backups_config
     - name: backup to /backups_config
