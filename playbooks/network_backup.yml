@@ -31,7 +31,7 @@
       copy:
         src: "{{ config_output.backup_path }}"
         dest: "{{ root_path }}/backup/{{hostvars['localhost'].datetime}}/"
-      when: config_output is defined                            #become: true
+      when: config_output is defined                            
       delegate_to: localhost
 
     - name: find backups
@@ -39,7 +39,7 @@
         paths: "{{ root_path }}/backup"
         file_type: directory
       register: backups
-      run_once: true                                            #become: true
+      run_once: true                                            
       delegate_to: localhost
       delegate_facts: true
 
