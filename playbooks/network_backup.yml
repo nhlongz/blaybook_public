@@ -49,12 +49,12 @@
       awx.awx.job_template:
         name: "Network Automation - Restore"
         job_type: "run"
-        inventory: "{{ restore_inventory|default('test') }}"
-        project: "{{ restore_project|default('git_pb_public') }}"
-        playbook: "{{ restores_playbook|default('playbooks/network_restore.yml') }}"
-        credential: "{{ restore_credential|default('cisco_pw') }}"
-        survey_enabled: true
-        survey_spec: "{{ lookup('template', '{{ playbook_dir }}/../network_setup/templates/backup.j2') }}"
-        validate_certs: no
         organization: "Default"
+        inventory: test
+        project: git_pb_public
+        playbook: playbooks/network_restore.yml
+        credential: cisco_pw
+        survey_enabled: true
+#        survey_spec: "{{ lookup('template', '{{ playbook_dir }}/../network_setup/templates/backup.j2') }}"
+        validate_certs: no
       run_once: true
