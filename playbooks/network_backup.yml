@@ -45,18 +45,20 @@
       delegate_to: localhost
       delegate_facts: true
 
-    - name: create restore job template
-      awx.awx.job_template:
+
+
+    - name: Create tower restore job template 
+      tower_job_template:
         name: "Network Automation - Restore"
         job_type: "run"
-        organization: "Default"
-        inventory: test
-        project: git_pb_public
-        playbook: playbooks/network_restore.yml
-        credential: cisco_pw
-#        survey_enabled: true
-#        survey_spec: "{{ lookup('template', '{{ playbook_dir }}/../network_setup/templates/backup.j2') }}"
-        validate_certs: no
+        inventory: "test"
+        project: "git_pb_public"
+        playbook: "playbook: playbooks/network_restore.yml"
+        credential: "cisco_pw"
+        state: "present"
+        tower_config_file: "~/tower_cli.cfg"
+#        survey_enabled: yes
+#        survey_spec: "{{ lookup('file', 'my_survey.json') }}"
+      state: "present"
       run_once: true
       delegate_to: localhost
-
