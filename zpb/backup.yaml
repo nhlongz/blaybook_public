@@ -54,7 +54,6 @@
         dest: "{{ backup_root }}/{{ site_name }}/{{ inventory_hostname }}/backup-config_{{ inventory_hostname }}"   #{{ timestamp.stdout }}
       delegate_to: localhost
 
-
     - name: find backups
       find:
         paths: /backup
@@ -66,7 +65,7 @@
       delegate_facts: true
 
     - name: create restore job template
-      ansible.controller.job_template:
+      awx.awx.job_template:
         name: "Network Automation - Restore"
         job_type: "run"
         inventory: "{{ restore_inventory|default('test') }}"
@@ -76,6 +75,6 @@
         survey_enabled: true
         survey_spec: "{{ lookup('template', '{{ playbook_dir }}/network_setup/templates/backup.j2') }}"
         validate_certs: no
-        execution_environment: "Default"
+        organization: "Default"
       run_once: true
 
