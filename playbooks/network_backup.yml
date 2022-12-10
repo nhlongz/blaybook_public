@@ -43,7 +43,7 @@
       run_once: true
 #      become: true
       delegate_to: localhost
-#      delegate_facts: true
+      delegate_facts: true
 
     - name: create restore job template
       awx.awx.job_template:
@@ -54,7 +54,7 @@
         project: git_pb_public
         playbook: playbooks/network_restore.yml
         credential: cisco_pw
-        survey_enabled: true
+#        survey_enabled: true
 #        survey_spec: "{{ lookup('template', '{{ playbook_dir }}/../network_setup/templates/backup.j2') }}"
         validate_certs: no
       run_once: true
