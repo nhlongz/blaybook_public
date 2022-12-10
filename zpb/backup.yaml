@@ -54,7 +54,7 @@
 
     - name: find backups
       find:
-        paths: /backup
+        paths: "{{ backup_root }}"
         file_type: directory
       register: backups
       run_once: true
