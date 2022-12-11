@@ -17,8 +17,10 @@
 
     - block:
         - name: Get date time
-          timestamp: "{{lookup('pipe', 'date +%Y-%m-%d@')}}"
+          command: date
           register: timestamp
+          environment:
+            TZ: Asia/Ho_Chi_Minh
           run_once: true
           delegate_to: localhost        
         - name: Create time stamp for play
