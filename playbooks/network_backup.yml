@@ -15,13 +15,12 @@
         name: "../roles/backup"
       when: ansible_network_os is defined
 
-    - name: create time stamp for play
-      set_fact:
-        datetime: "{{ lookup('pipe', 'date +%Y-%m-%dT%H:%M:%S%z') }}"
+    - name: get timestamp
+      command: date +%Y%m%d-%H:%M
+      register: timestamp
       delegate_to: localhost
       delegate_facts: true
       run_once: true
-
 
     - name: ensure backup folder is created
       file:
