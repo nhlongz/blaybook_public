@@ -16,13 +16,8 @@
       when: ansible_network_os is defined
 
     - block:
-        - name: Set timezone to Asia/Ho_Chi_Minh
-          timezone:
-            name: Asia/Ho_Chi_Minh
-          delegate_to: localhost
-          run_once: true
         - name: Get date time
-          command: date      
+          shell: date
           register: timestamp
           run_once: true
           delegate_to: localhost        
