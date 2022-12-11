@@ -17,9 +17,10 @@
 
     - block:
         - name: Get date time
-          command: TZ=UTC+7 date +'%Y-%m-%d@%H:%M'
+          command: date +'%Y-%m-%d@%H:%M'       #TZ=UTC+7 
           register: timestamp
-          run_once: true        
+          run_once: true
+          delegate_to: localhost        
         - name: Create time stamp for play
           set_fact:
             datetime: "{{ timestamp.stdout }}"
