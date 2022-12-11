@@ -1,2 +1,0 @@
-- name: load platform module for system
-  include_tasks: "{{ ansible_network_os }}.yml"
