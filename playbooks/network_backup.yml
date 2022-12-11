@@ -4,6 +4,9 @@
   gather_facts: false
   vars:
     root_path: /var/lib/ol-automation-manager
+    inventory_restore: "test"
+    project_restore: "git_pb_public"
+    playbook_restore: "playbooks/network_restore.yml"
   tasks:
 
 
@@ -48,9 +51,9 @@
         name: "Network Automation - Restore"
         organization: "Default"
         job_type: "run"
-        inventory: "test"
-        project: "git_pb_public"
-        playbook: "playbooks/network_restore.yml"
+        inventory: "{{ inventory_restore }}"
+        project: "{{ project_restore }}"
+        playbook: "{{ playbook_restore }}"
         credentials: 
           - "cisco_pw"
         state: "present"
