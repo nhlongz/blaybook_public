@@ -17,7 +17,7 @@
 
     - block:
         - name: get date time
-          command: date +%Y-%m-%d.%H:%M
+          command: date +%Y-%m-%d@%H:%M
           register: timestamp
           run_once: true        
         - name: create time stamp for play
