@@ -1,7 +1,7 @@
 ---
 - name: retrieve network configurations
   hosts: site03
-  gather_facts: true
+  gather_facts: false
   vars:
     root_path: /var/lib/ol-automation-manager
     inventory_restore: "test"
@@ -17,7 +17,7 @@
 
     - block:
         - name: Get date time
-          shell: date
+          shell: tz=UTC+7 date
           register: timestamp
           run_once: true
           delegate_to: localhost        
