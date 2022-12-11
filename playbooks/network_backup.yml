@@ -37,7 +37,7 @@
       run_once: true
       delegate_to: localhost
 
-    - name: Save configuration to backup folder
+    - name: Save config to backup folder
       copy:
         src: "{{ config_output.backup_path }}"
         dest: "{{ root_path }}/backup/{{hostvars['localhost'].datetime}}/"
@@ -55,7 +55,7 @@
 
     - name: Create restore job template 
       awx.awx.job_template:
-        name: "Network Automation - Restore"
+        name: "Network - Restore"
         organization: "Default"
         job_type: "run"
         inventory: "{{ inventory_restore }}"
