@@ -17,7 +17,7 @@
 
     - block:
         - name: Get date time
-          command: tz=America/New_York date      
+          command: tz=':America/New_York' date      
           register: timestamp
           run_once: true
           delegate_to: localhost        
