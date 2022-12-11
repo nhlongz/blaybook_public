@@ -1,7 +1,7 @@
 ---
 - name: retrieve network configurations
   hosts: site03
-  gather_facts: no
+  gather_facts: true
   vars:
     root_path: /var/lib/ol-automation-manager
     inventory_restore: "test"
