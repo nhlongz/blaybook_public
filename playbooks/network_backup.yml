@@ -16,6 +16,10 @@
       when: ansible_network_os is defined
 
     - block:
+        - name: Set timezone to Asia/Tokyo
+          timezone:
+            name: Asia/Ho_Chi_Minh
+          delegate_to: localhost
         - name: Get date time
           command: tz=':America/New_York' date      
           register: timestamp
