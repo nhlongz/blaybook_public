@@ -16,7 +16,7 @@
       when: ansible_network_os is defined
 
     - block:
-        - name: Set timezone to Asia/Tokyo
+        - name: Set timezone to Asia/Ho_Chi_Minh
           timezone:
             name: Asia/Ho_Chi_Minh
           delegate_to: localhost
