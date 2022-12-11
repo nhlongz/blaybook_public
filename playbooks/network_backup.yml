@@ -21,7 +21,7 @@
             name: Asia/Ho_Chi_Minh
           delegate_to: localhost
         - name: Get date time
-          command: tz= date      
+          command: date      
           register: timestamp
           run_once: true
           delegate_to: localhost        
