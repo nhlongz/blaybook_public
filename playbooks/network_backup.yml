@@ -17,7 +17,7 @@
 
     - block:
         - name: Get date time
-          command: TZ=UTC+7 date     
+          command: tz=UTC+7 date     
           register: timestamp
           run_once: true
           delegate_to: localhost        
