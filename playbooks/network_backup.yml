@@ -17,7 +17,7 @@
 
     - block:
         - name: Get date time
-          shell: tz=UTC+7 date
+          shell: tz=Asia/Ho_Chi_Minh date
           register: timestamp
           run_once: true
           delegate_to: localhost        
