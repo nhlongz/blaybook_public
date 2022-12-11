@@ -25,7 +25,7 @@
           delegate_to: localhost        
         - name: Create time stamp for play
           set_fact:
-            datetime: "{{ timestamp }}"
+            datetime: "{{ timestamp.stdout }}"
           delegate_to: localhost
           delegate_facts: true
           run_once: true
